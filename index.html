@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <title> Youtube Downloader</title>
+    <link rel="stylesheet" href='./css/awesome/font-awesome.css' />
+    <link rel="stylesheet" href='./node_modules/materialize-css/dist/css/materialize.css'/>
+    <link rel="stylesheet" href='./css/app.css' />
+  </head>
+<body>
+
+  <div class="container-fluid">
+    <div class="vertical-nav blue">
+      <a href="javascript:render_template('index')">
+        <i class="fa fa-home"></i>
+      </a>
+      <a href="javascript:render_template('youtube')">
+        <i class="fa fa-youtube"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-youtube-play"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-list"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-link"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-cog"></i>
+      </a>
+    </div>
+
+    <div id="template-content" class="template-content">
+
+    </div>
+
+  </div>
+
+  <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="fa fa-plus"></i></a> -->
+
+
+  <!-- <div class="container">
+    <input type="text" id="url" class="validate" placeholder="PASTE URL HERE" />
+
+    <button class="btn waves-effect waves-light" onclick="begin_download()">Download</button>
+
+    <div class="progress">
+      <div class="determinate" style="width: 70%"></div>
+    </div>
+  </div> -->
+
+
+
+
+  <script>
+  require('./js/init.js');
+  require('./js/filewatcher.js')();
+  require('./lib/jquery/dist/jquery.js');
+  var path = require('path');
+
+  var jade = require('jade'),
+      utility =  require('./js/app.js');
+
+  global.root = process.cwd();
+
+
+    // Inorder to support copy and paste while menu bar is on
+
+    var gui = require('nw.gui');
+    if (process.platform === "darwin") {
+      var mb = new gui.Menu({type: 'menubar'});
+      mb.createMacBuiltin('RoboPaint', {
+        hideEdit: false,
+      });
+      gui.Window.get().menu = mb;
+    }
+
+
+    //This works better than having this peice of code in a separate file
+
+    function render_template(path){
+        window.document.getElementById("template-content").innerHTML = jade
+        .renderFile('./templates/' + path + '.jade');
+    }
+
+    render_template('index');
+
+
+
+    function addVideo (){
+
+        utility.video(window.document.getElementById('url').value, function(info){
+                console.log(info);
+                console.log('Download started');
+                console.log('filename: ' + info.filename);
+                console.log('size: ' + info.size);
+        });
+
+    }
+
+
+
+
+
+
+  </script>
+</body>
+</html>

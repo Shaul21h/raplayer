@@ -1,0 +1,21 @@
+{
+  "main": "index.html",
+  "name": "Youtube_Downloader",
+  "description": "Youtube downloader",
+  "version": "0.1.0",
+  "keywords": [ "Youtube", "Downloader" ],
+  "window": {
+    "title": "Youtube - Downloader",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 1200,
+    "height": 500,
+    "position": "mouse",
+    "min_width": 400,
+    "min_height": 200
+  },
+  "webkit": {
+    "plugin": true
+  }
+}
